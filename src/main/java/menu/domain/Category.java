@@ -1,7 +1,5 @@
 package menu.domain;
 
-import menu.util.RandomRecommender;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,11 +27,7 @@ public enum Category {
                 .orElseThrow();
     }
 
-    public static String getRandomMenu(int num) {
-        return RandomRecommender.recommendRandomMenu(from(num).getMenus());
-    }
-
-    public static boolean hasMenu(String menu){
+    public static boolean hasMenu(String menu) {
         return Arrays.stream(values())
                 .anyMatch(category -> category.getMenus().contains(menu));
     }
