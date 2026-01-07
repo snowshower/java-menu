@@ -7,11 +7,11 @@ import java.util.List;
 public class Coaches {
     private final List<Coach> coaches;
 
-    public Coaches(List<Coach> coaches){
-        this.coaches=new ArrayList<>(coaches);
+    public Coaches(List<Coach> coaches) {
+        this.coaches = new ArrayList<>(coaches);
     }
 
-    public List<Coach> getCoaches(){
+    public List<Coach> getCoaches() {
         return Collections.unmodifiableList(coaches);
     }
 }

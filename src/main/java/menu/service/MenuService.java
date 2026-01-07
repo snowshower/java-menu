@@ -10,26 +10,27 @@ import java.util.List;
 
 public class MenuService {
 
-    public void recommendMenu(List<String> categories, Coaches coaches){
+    public void recommendMenu(List<String> categories, Coaches coaches) {
 
-        int categoryNum=recommendCategory(categories);
+        int categoryNum = recommendCategory(categories);
         for (Coach coach : coaches.getCoaches()) {
-            while(true){
-                String menu=Category.getRandomMenu(categoryNum);
-                if(coach.isBanMenu(menu)) continue;
-                if(coach.isEatenMenu(menu)) continue;
-                coach.eat(menu); break;
+            while (true) {
+                String menu = Category.getRandomMenu(categoryNum);
+                if (coach.isBanMenu(menu)) continue;
+                if (coach.isEatenMenu(menu)) continue;
+                coach.eat(menu);
+                break;
             }
         }
     }
 
-    private int recommendCategory(List<String> categories){
+    private int recommendCategory(List<String> categories) {
 
-        while(true){
-            int categoryNum= RandomRecommender.recommendRandomCategory();
-            String categoryName=Category.from(categoryNum).getCategoryName();
-            int count= Collections.frequency(categories, categoryName);
-            if(count>2) continue;
+        while (true) {
+            int categoryNum = RandomRecommender.recommendRandomCategory();
+            String categoryName = Category.from(categoryNum).getCategoryName();
+            int count = Collections.frequency(categories, categoryName);
+            if (count > 2) continue;
             categories.add(categoryName);
             return categoryNum;
         }

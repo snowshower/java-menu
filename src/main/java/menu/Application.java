@@ -7,10 +7,10 @@ import menu.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        InputView inputView=new InputView();
-        OutputView outputView=new OutputView();
-        MenuService menuService=new MenuService();
-        MenuController menuController=new MenuController(inputView, outputView, menuService);
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+        MenuService menuService = new MenuService();
+        MenuController menuController = new MenuController(inputView, outputView, menuService);
 
         menuController.run();
     }

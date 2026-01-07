@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Parser {
 
-    public static List<String> parseStringList(String input){
+    public static List<String> parseStringList(String input) {
         return Arrays.stream(input.split(","))
                 .map(String::trim)
                 .collect(Collectors.toList());

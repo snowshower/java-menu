@@ -16,28 +16,28 @@ public enum Category {
     private final String categoryName;
     private final List<String> menus;
 
-    Category(int categoryNum, String categoryName, List<String> menus){
-        this.categoryNum=categoryNum;
-        this.categoryName=categoryName;
-        this.menus=menus;
+    Category(int categoryNum, String categoryName, List<String> menus) {
+        this.categoryNum = categoryNum;
+        this.categoryName = categoryName;
+        this.menus = menus;
     }
 
-    public static Category from(int num){
+    public static Category from(int num) {
         return Arrays.stream(values())
-                .filter(c->c.categoryNum==num)
+                .filter(c -> c.categoryNum == num)
                 .findFirst()
                 .orElseThrow();
     }
 
-    public static String getRandomMenu(int num){
+    public static String getRandomMenu(int num) {
         return RandomRecommender.recommendRandomMenu(from(num).getMenus());
     }
 
-    public String getCategoryName(){
+    public String getCategoryName() {
         return categoryName;
     }
 
-    public List<String> getMenus(){
+    public List<String> getMenus() {
         return menus;
     }
 }
