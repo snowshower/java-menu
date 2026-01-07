@@ -32,7 +32,7 @@ public class MenuService {
             int categoryNum = randomStrategy.getCategoryNumber();
             String categoryName = Category.from(categoryNum).getCategoryName();
             int count = Collections.frequency(categories, categoryName);
-            if (count > 2) continue;
+            if (count >= 2) continue;
             categories.add(categoryName);
             return categoryNum;
         }
