@@ -10,6 +10,7 @@ public class InputView {
     }
 
     public String inputBanMenu(String coachName){
+        System.out.println();
         System.out.println(coachName+"(이)가 못 먹는 메뉴를 입력해 주세요.");
         return Console.readLine();
     }
