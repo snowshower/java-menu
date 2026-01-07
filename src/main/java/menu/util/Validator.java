@@ -5,6 +5,10 @@ import menu.domain.Category;
 import java.util.List;
 
 public class Validator {
+    private static final int MIN_COACH_COUNT = 2;
+    private static final int MAX_COACH_COUNT = 5;
+    private static final int MIN_COACH_NAME = 2;
+    private static final int MAX_COACH_NAME = 4;
 
     public static void validateCoachInput(String input) {
         coachNameIsNull(input);
@@ -31,19 +35,19 @@ public class Validator {
     }
 
     private static void invalidCoachNumber(List<String> coaches) {
-        if (coaches.size() < 2 || coaches.size() > 5) {
+        if (coaches.size() < MIN_COACH_COUNT || coaches.size() > MAX_COACH_COUNT) {
             throw new IllegalArgumentException("[ERROR] 코치는 최소 2명 이상 입력해야 합니다.");
         }
     }
 
-    private static void duplicatedCoach(List<String> coaches){
-        if(coaches.size()!=coaches.stream().distinct().count()){
+    private static void duplicatedCoach(List<String> coaches) {
+        if (coaches.size() != coaches.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 중복된 코치 이름을 입력했습니다.");
         }
     }
 
     private static void invalidCoachName(String input) {
-        if (input.length() < 2 || input.length() > 4) {
+        if (input.length() < MIN_COACH_NAME || input.length() > MAX_COACH_NAME) {
             throw new IllegalArgumentException("[ERROR] 코치 이름은 2글자 ~ 4글자여야 합니다.");
         }
     }
