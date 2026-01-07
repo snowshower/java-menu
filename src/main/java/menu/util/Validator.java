@@ -2,7 +2,6 @@ package menu.util;
 
 import menu.domain.Category;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Validator {
@@ -11,6 +10,7 @@ public class Validator {
         coachNameIsNull(input);
         List<String> list = Parser.parseStringList(input);
         invalidCoachNumber(list);
+        duplicatedCoach(list);
         for (String s : list) {
             invalidCoachName(s);
         }
@@ -24,7 +24,6 @@ public class Validator {
         }
     }
 
-
     private static void coachNameIsNull(String input) {
         if (input == null) {
             throw new IllegalArgumentException("[ERROR] 올바른 코치 이름을 입력해 주세요.");
@@ -34,6 +33,12 @@ public class Validator {
     private static void invalidCoachNumber(List<String> coaches) {
         if (coaches.size() < 2 || coaches.size() > 5) {
             throw new IllegalArgumentException("[ERROR] 코치는 최소 2명 이상 입력해야 합니다.");
+        }
+    }
+
+    private static void duplicatedCoach(List<String> coaches){
+        if(coaches.size()!=coaches.stream().distinct().count()){
+            throw new IllegalArgumentException("[ERROR] 중복된 코치 이름을 입력했습니다.");
         }
     }
 
@@ -50,16 +55,9 @@ public class Validator {
     }
 
     private static void invalidMenu(String input) {
-        List<String> menuList = new ArrayList<>();
-        menuList.addAll(Category.JAPANESE.getMenus());
-        menuList.addAll(Category.KOREAN.getMenus());
-        menuList.addAll(Category.CHINESE.getMenus());
-        menuList.addAll(Category.ASIAN.getMenus());
-        menuList.addAll(Category.WESTERN.getMenus());
-
         if (input.isBlank()) return;
 
-        if (!menuList.contains(input)) {
+        if (!Category.hasMenu(input)) {
             throw new IllegalArgumentException("[ERROR] 없는 메뉴를 입력하셨습니다. 다시 입력해 주세요.");
         }
     }

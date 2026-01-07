@@ -33,6 +33,11 @@ public enum Category {
         return RandomRecommender.recommendRandomMenu(from(num).getMenus());
     }
 
+    public static boolean hasMenu(String menu){
+        return Arrays.stream(values())
+                .anyMatch(category -> category.getMenus().contains(menu));
+    }
+
     public String getCategoryName() {
         return categoryName;
     }
